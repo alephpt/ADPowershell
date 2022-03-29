@@ -3,7 +3,7 @@
 @for /F "tokens=1 delims=," %%A in (blocker.csv) do (
 
 :: gather bitlocker status
-manage-bde -cn %%A -status c: > \\chgprofsrv\home$\Drivers\Scripts\BLocker\Status\%%A.txt
+manage-bde -cn %%A -status c: > \\someserver\somedrive$\some\report\dir\%%A.txt
 
 :: Turns on bitlocker encryption
 :: psexec \\%%A manage-bde -on C: -skiphardwaretest -recoverypassword
@@ -15,7 +15,7 @@ manage-bde -cn %%A -status c: > \\chgprofsrv\home$\Drivers\Scripts\BLocker\Statu
 :: psexec \\%%A shutdown /r /c "Windows will shutdown momentarily to preform necessary updates. Press [F1] upon Reboot to complete the required TPM system update. Please save any unsaved changes now."
 
 :: Stores the recovery keys in a txt
-:: manage-bde -cn %%A -protectors -get c: > \\chgprofsrv\home$\Drivers\Scripts\BLocker\Keys\BitLocker^ Recovery^ Key^ %%A.txt
+:: manage-bde -cn %%A -protectors -get c: > \\someserver\somedrive$\some\bitlocker\dir\BitLocker^ Recovery^ Key^ %%A.txt
 
 :: Runs the gpupdate (requires you to press n and then enter after a few moments to proceed with prompt)
 :: psexec \\%%A gpupdate /force
